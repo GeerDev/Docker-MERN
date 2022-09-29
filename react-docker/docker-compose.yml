@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  docker:
+    container_name: docker-con-react
+    build: .
+    ports:
+      - "5000:3000"
+    volumes:
+      - nuevo_volumen:/react-docker
+volumes:
+  nuevo_volumen:
