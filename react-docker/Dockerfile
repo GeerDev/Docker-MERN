@@ -1,14 +1,14 @@
-FROM node:latest
+FROM node:18
 
-WORKDIR /react-docker 
+WORKDIR /home/react-docker 
 
-COPY . /react-docker 
+COPY . /home/react-docker 
 
 RUN npm install
 
-# RUN npm i -g serve
+RUN npm i -g serve
 
-# RUN npm run build
+RUN npm run build
 
 EXPOSE 3000 
 
