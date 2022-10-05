@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  servicio_react:
+    container_name: react
+    build: ./react-docker
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./react-docker:/home/react-docker
