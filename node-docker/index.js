@@ -1,16 +1,24 @@
 const express = require('express');
 const app = express();
 
+const Text = require("./models/Text.js");
+
 require('dotenv').config()
 
 const { dbConnection } = require('./database/config')
 
 const PORT = process.env.PORT
 
-app.get('/title', (req,res) => {
-    res.send('Hola estamos utilizando el stack MERN con Docker :)')
+app.get('/title', async (req,res) => {
+    const title = await Text.find()
+    res.send(title)
 })
 
-// dbConnection()
+app.post('/title', async (req,res) => {
+    await Text.create({title: "Aprendiendo Docker, utilizando el stack MERN :)"})
+    res.send('Título creado con éxito')
+})
+
+dbConnection()
 
 app.listen(PORT, () => console.log(`Servidor levantado en el puerto ${PORT}`))
