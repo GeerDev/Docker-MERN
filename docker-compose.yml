@@ -6,4 +6,4 @@ services:
     ports:
       - "5000:3000"
     volumes:
-      - ./react-docker:/home/react-docker
+      - ./react-docker:/usr/src/react-docker
