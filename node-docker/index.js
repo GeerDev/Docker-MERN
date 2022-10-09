@@ -10,7 +10,7 @@ const { dbConnection } = require('./database/config')
 const PORT = process.env.PORT
 
 app.get('/title', async (req,res) => {
-    const title = await Text.find()
+    const title = await Text.findOne()
     res.send(title)
 })
 

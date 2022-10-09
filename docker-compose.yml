@@ -7,3 +7,10 @@ services:
       - "5000:3000"
     volumes:
       - ./react-docker:/usr/src/react-docker
+  servicio_node:
+    container_name: node
+    build: ./node-docker
+    ports:
+      - "5017:3017"
+    volumes:
+      - ./node-docker:/usr/src/node-docker
