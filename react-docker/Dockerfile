@@ -2,9 +2,11 @@ FROM node:18
 
 WORKDIR /home/react-docker 
 
-COPY . /home/react-docker 
+COPY package*.json .
 
 RUN npm install
+
+COPY . .
 
 RUN npm i -g serve
 

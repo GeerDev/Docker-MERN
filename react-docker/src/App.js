@@ -8,7 +8,7 @@ function App() {
 const [text, setText] = useState("");
 
 useEffect(() => {
-  axios.get(`http://localhost:3017/title`)
+  axios.get(process.env.REACT_APP_URL)
   .then(res => {
     setText(res.data.title) 
   })

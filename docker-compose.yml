@@ -5,12 +5,46 @@ services:
     build: ./react-docker
     ports:
       - "5000:3000"
+    environment:
+      - REACT_APP_URL=http://localhost:8080/title
+    stdin_open: true
+    tty: true
     volumes:
       - ./react-docker:/usr/src/react-docker
+    links:
+      - servicio_node
   servicio_node:
     container_name: node
     build: ./node-docker
     ports:
       - "5017:3017"
+    environment:
+      - PORT=3017
+      - MONGO_URI=mongodb://ger:contraseñager@servicio_mongo:27017/Database-Docker?authSource=admin
     volumes:
       - ./node-docker:/usr/src/node-docker
+    depends_on:
+      - servicio_mongo
+  servicio_mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=ger
+      - MONGO_INITDB_ROOT_PASSWORD=contraseñager
+    volumes:
+      - mongo-data:/data/db
+      - mongo-data-log:/var/log/mongodb
+  servicio_nginx:
+    container_name: nginx
+    build: ./nginx-docker
+    ports:
+      - 8080:80
+    links:
+      - servicio_react
+      - servicio_node
+volumes:
+  mongo-data:
+  mongo-data-log:
