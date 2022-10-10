@@ -5,14 +5,10 @@ services:
     build: ./react-docker
     ports:
       - "5000:3000"
-    environment:
-      - REACT_APP_URL=http://localhost:8080/title
     stdin_open: true
     tty: true
     volumes:
       - ./react-docker:/usr/src/react-docker
-    links:
-      - servicio_node
   servicio_node:
     container_name: node
     build: ./node-docker

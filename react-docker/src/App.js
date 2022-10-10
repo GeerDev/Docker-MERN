@@ -5,10 +5,12 @@ import {useEffect, useState} from 'react'
 
 function App() {
 
+const URL = process.env.REACT_APP_URL
+
 const [text, setText] = useState("");
 
 useEffect(() => {
-  axios.get(process.env.REACT_APP_URL)
+  axios.get(URL + "/title")
   .then(res => {
     setText(res.data.title) 
   })

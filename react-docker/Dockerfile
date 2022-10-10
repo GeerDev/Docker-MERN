@@ -1,8 +1,10 @@
-FROM node:18
+FROM node:lts-alpine3.15
 
 WORKDIR /home/react-docker 
 
 COPY package*.json .
+
+ENV REACT_APP_URL=http://localhost:8080
 
 RUN npm install
 
