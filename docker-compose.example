@@ -16,7 +16,7 @@ services:
       - "5017:3017"
     environment:
       - PORT=3017
-      - MONGO_URI=mongodb://ger:contraseñager@servicio_mongo:27017/Database-Docker?authSource=admin
+      - MONGO_URI=mongodb://<username>:<password>@servicio_mongo:27017/<name_database>?authSource=admin
     volumes:
       - ./node-docker:/usr/src/node-docker
     depends_on:
@@ -28,8 +28,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=ger
-      - MONGO_INITDB_ROOT_PASSWORD=contraseñager
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
     volumes:
       - mongo-data:/data/db
       - mongo-data-log:/var/log/mongodb

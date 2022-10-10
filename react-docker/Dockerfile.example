@@ -4,7 +4,7 @@ WORKDIR /home/react-docker
 
 COPY package*.json .
 
-ENV REACT_APP_URL=http://localhost:8080
+ENV REACT_APP_URL=
 
 RUN npm install
 
