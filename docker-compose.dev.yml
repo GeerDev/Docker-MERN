@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+  servicio_react:
+    container_name: react
+    build:
+      context: ./react-docker
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./react-docker:/home/react-docker
+      - ./react-docker/node_modules:/home/react-docker/node_modules
+  servicio_node:
+    container_name: node
+    build:
+      context: ./node-docker
+      dockerfile: Dockerfile.dev 
+    ports:
+      - "3017:3017"
+    environment:
+      - PORT=3017
+      - MONGO_URI=mongodb://ger:contraseñager@servicio_mongo:27017/Database-Docker-Desarrollo?authSource=admin
+    volumes:
+      - ./node-docker:/home/node-docker
+      - ./node-docker/node_modules:/home/node-docker/node_modules
+    depends_on:
+      - servicio_mongo
+  servicio_mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=ger
+      - MONGO_INITDB_ROOT_PASSWORD=contraseñager
+    volumes:
+      - mongo-data:/data/db
+      - mongo-data-log:/var/log/mongodb
+  servicio_nginx:
+    container_name: nginx
+    build: ./nginx-docker
+    ports:
+      - 8080:80
+    links:
+      - servicio_react
+      - servicio_node
+volumes:
+  mongo-data:
+  mongo-data-log:
