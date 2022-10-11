@@ -1,4 +1,10 @@
 /node_modules
 /build
+.gitignore
 .env
+.env.example
 Dockerfile
+Dockerfile.example
+Dockerfile.dev
+Dockerfile.dev.example
+README.md
