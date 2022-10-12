@@ -22,6 +22,7 @@ app.post('/title', async (req,res) => {
     res.send('Título creado con éxito')
 })
 
+// Si quisieramos que el servidor de Node sirviera el mismo el archivo de producción que crea React -npm run build-
 // app.use(express.static(path.join(__dirname, 'build')));
 
 // app.get('/*', function (req, res) {
