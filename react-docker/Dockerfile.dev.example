@@ -5,6 +5,7 @@ WORKDIR /home/react-docker
 COPY . .
 
 ENV REACT_APP_URL=
+ENV WATCHPACK_POLLING=
 
 RUN npm install
 

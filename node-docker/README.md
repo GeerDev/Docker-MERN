@@ -23,7 +23,8 @@ CMD ["npm", "start"]
 ```
 
 >   - En la versión de desarrollo hemos creado un comando para que podamos observar los cambios en tiempo real con "nodemon" dentro del contenedor.
->   - El cambio de comando esta en "package.json" -> "dev:docker": "nodemon --legacy-watch index.js"
+>   - Esto sucede en entornos Docker utilizando Windows con "Docker Desktop".
+>   - El cambio de comando esta en "package.json" -> "dev:docker": "nodemon --legacy-watch index.js".
 
 ### Modo desarrollo
 ```
@@ -40,4 +41,4 @@ EXPOSE 3017
 CMD ["npm", "run", "dev:docker"] 
 ```
 
-Nota: La información de la conexión a base de datos de MongoDB se encuentra en el archivo docker-compose.yml, por eso no hemos incluido los archivos "Dockerfile" en el archivo "gitignore"
+Nota: La información de la conexión a base de datos de MongoDB se encuentra en el archivo docker-compose.yml, por eso no hemos incluido los archivos "Dockerfile" en el archivo ".gitignore".

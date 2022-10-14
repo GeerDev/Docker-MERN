@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Contenedor React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+>   - Creamos una imagen partiendo de una imagen de Node bastante liviana (Alpine).
+>   - Establecemos un directorio de trabajo "/home/react-docker".
+>   - Copiamos los archivos que contengan "package" más cualquier otra cosa con la extensión ".json" en el directorio de trabajo.
+>   - Establecemos la variable de entorno para realizar las peticiones a nuestro back-end.
+>   - Corremos el comando para instalar todas las dependencias.
+>   - Copiamos ahora todo nuestro proyecto dentro del contenedor.
+>   - Instalamos las dependencias necesarias para poder servir contenido estático desde el contenedor.
+>   - Corremos el comando para generar una "build" de producción de nuestro proyecto en React.
+>   - Exponemos el puerto que va a tener disponible este contenedor.
+>   - Ejecutamos el comando para que podamos servir nuestro archivo de producción, este arrancará el contenedor.
 
-## Available Scripts
+### Modo producción
+```
+FROM node:lts-alpine3.15
 
-In the project directory, you can run:
+WORKDIR /home/react-docker 
 
-### `npm start`
+COPY package*.json .
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ENV REACT_APP_URL=http://localhost:8080
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+RUN npm install
 
-### `npm test`
+COPY . .
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+RUN npm i -g serve
 
-### `npm run build`
+RUN npm run build
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+EXPOSE 3000 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+CMD ["serve", "-s", "build"] 
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+>   - Agregamos una variable de entorno adicional "WATCHPACK_POLLING" para que se puedan observar cambios en tiempo real cuando estemos en modo desarrollo en este contenedor.
+>   - Ejecutamos el comando para arrancar el contenedor en desarrollo como si lo estuvieramos corriendo en nuestra propia máquina (localhost).
 
-### `npm run eject`
+### Modo desarrollo
+```
+FROM node:lts-alpine3.15
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+WORKDIR /home/react-docker 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+COPY . .
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ENV REACT_APP_URL=http://localhost:8080
+ENV WATCHPACK_POLLING=true
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+RUN npm install
 
-## Learn More
+EXPOSE 3000 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+CMD ["npm", "start"] 
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Nota: Es muy importante generar las variables de entorno de este contenedor en el momento que se construye esta imagen, no despues cuando se construyen todos los servicios a la vez en "docker-compose.yml".
