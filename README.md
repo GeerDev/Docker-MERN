@@ -6,5 +6,4 @@
 
 ## Entorno de trabajo: Utilizando Servidor Nginx como proxy inverso
 
-
 ## Ambientes de producción y desarrollo
