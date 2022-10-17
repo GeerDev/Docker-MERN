@@ -22,7 +22,7 @@ En el segundo entorno, creamos contenedores para cada una de las partes del proy
 - Las variables de entorno del contenedor de Node a diferencia del de React se implementan a la hora de correr el archivo que monta todos los servicios (docker-compose)
 - El contenedor de Node siempre espera a que primero se haya iniciado el contenedor de base de datos MongoDB
 - Las variables de entorno que necesita el contenedor MongoDB por definición para la autenticación se incorporan también a la hora de montar todos los servicios
-- 
+
 ![Foto Dockerizado](./imagenes_readme/dockerizado.png) 
 ## Entorno de trabajo: Utilizando Servidor Nginx como proxy inverso
 En este entorno, hemos implementado un servidor Nginx como proxy inverso para que administre las peticiones que le entran por el puerto 8080 de nuestro sistema anfitrión mapeado a nuestro puerto 80 del contenedor que se encarga de esto. Dentro de la configuración de nuestro contenedor Nginx mediante la opción "links" hemos podido establecer la relación con los contenedores de Node y React, además de la propia configuración de Nginx (nginx.conf) establecer como proxy_pass estos servicios con sus respectivos puertos.
@@ -57,5 +57,7 @@ docker compose down --rmi all -v
 ```
 
 ![foto](./imagenes_readme/sistematumbado.png) 
+
+<strong>Nota:</strong> El sistema anfitrión es un Windows y hemos utilizado la correspondiente virtualización para este sistema operativo usando Docker Desktop como herramienta de trabajo.
 
 Hecho por [Germán Fernández](https://www.linkedin.com/in/geerdev/)
