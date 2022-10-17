@@ -60,4 +60,4 @@ docker compose down --rmi all -v
 
 <strong>Nota:</strong> El sistema anfitrión es un Windows y hemos utilizado la correspondiente virtualización para este sistema operativo usando Docker Desktop como herramienta de trabajo.
 
-Hecho por [Germán Fernández](https://www.linkedin.com/in/geerdev/) :technologist:
+😀 Hecho por [Germán Fernández](https://www.linkedin.com/in/geerdev/) :technologist:
