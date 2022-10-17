@@ -12,10 +12,11 @@ En el primer entorno ejecutamos todo en "localhost" con los puertos que están d
 - Nuestro back con NodeJS (puerto 3017)
 - La base de datos MongoDB (puerto 27017)
 
-![foto](./imagenes_readme/localhost.png) 
+![Foto Localhost](./imagenes_readme/localhost.png) 
 ## Entorno de trabajo: Entorno Dockerizado
-
-![foto](./imagenes_readme/dockerizado.png) 
+En el segundo entorno, creamos contenedores para cada una de las partes del proyecto y hacemos "port mapping" con nuestro sistema anfitrión:
+- 
+![Foto Dockerizado](./imagenes_readme/dockerizado.png) 
 ## Entorno de trabajo: Utilizando Servidor Nginx como proxy inverso
 
 ![foto](./imagenes_readme/nginx.png) 
@@ -35,6 +36,10 @@ docker compose -f docker-compose.dev.yml up -d
 
 
 ![foto](./imagenes_readme/sistematumbado.png) 
+```
+docker compose down
+```
+
 ```
 docker compose down --rmi all -v
 ```
