@@ -1,6 +1,10 @@
 # Stack MERN utilizando contenedores Docker
 _Este proyecto simula un entorno utilizando el stack MERN usando Docker para construir la arquitectura web_
+
+
 _Primero montaremos el sistema tirando del sistema local, luego construiremos contenedores y por último veremos una forma distinta de acceder utilizando un cotenedor con una imagen de Nginx instalado_
+
+
 Nota: Este proyecto se centra en temas de arquitectura web, no en como está montado el código tanto del front como el del back
 ## Entorno de trabajo: Todo en local (Localhost)
 En el primer entorno ejecutamos todo en "localhost" con los puertos que están disponibles:
