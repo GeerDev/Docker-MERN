@@ -7,7 +7,7 @@ _Primero montaremos el sistema tirando del sistema local, luego construiremos co
 
 Nota: Este proyecto se centra en temas de arquitectura web, no en como está montado el código tanto del front como el del back.
 ## :building_construction: Entorno de trabajo: Todo en local (Localhost) :building_construction:
-En el primer entorno ejecutamos todo en "localhost" con los puertos que están disponibles:
+En el primer entorno ejecutamos todo en "localhost" con los siguientes puertos:
 - En nuestro front con React (puerto 3000)
 - Nuestro back con NodeJS (puerto 3017)
 - La base de datos MongoDB (puerto 27017)
@@ -25,7 +25,7 @@ En el segundo entorno, creamos contenedores para cada una de las partes del proy
 
 ![Foto Dockerizado](./imagenes_readme/dockerizado.png) 
 ## :building_construction: Entorno de trabajo: Utilizando Servidor Nginx como proxy inverso :building_construction:
-En este entorno, hemos implementado un servidor Nginx como proxy inverso para que administre las peticiones que le entran por el puerto 8080 de nuestro sistema anfitrión mapeado a nuestro puerto 80 del contenedor que se encarga de esto. Dentro de la configuración de nuestro contenedor Nginx mediante la opción "links" hemos podido establecer la relación con los contenedores de Node y React, además de la propia configuración de Nginx (nginx.conf) establecer como proxy_pass estos servicios con sus respectivos puertos.
+En este entorno, hemos implementado un servidor Nginx como proxy inverso para que administre las peticiones que le entran por el puerto 8080 de nuestro sistema anfitrión mapeado a nuestro puerto 80 del contenedor. Dentro de la configuración de nuestro contenedor Nginx mediante la opción "links" hemos podido establecer la relación con los contenedores de Node y React, además en la propia configuración de Nginx (nginx.conf) establecemos como proxy_pass estos servicios con sus respectivos puertos.
 
 <strong>Nota:</strong> Es muy importante recalcar que ahora mismo el sistema tiene muchos puertos abiertos, tanto los que gestiona el servidor web Nginx, como cada contenedor por su cuenta relacionado con el sistema anfitrión. Al ser un proyecto para practicar con Docker dejaremos esto así pero una configuración buena sería cerrar el mapeo de los contenedor de React y Node ya que Nginx ya se encarga de estas redirecciones y dejar solo la conexión del sistema anfitrión con la base de datos por si necesitas hacer alguna consulta por consola con MongoDB.
 
