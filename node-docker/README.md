@@ -42,3 +42,5 @@ CMD ["npm", "run", "dev:docker"]
 ```
 
 Nota: La información de la conexión a base de datos de MongoDB se encuentra en el archivo docker-compose.yml, por eso no hemos incluido los archivos "Dockerfile" en el archivo ".gitignore".
+
+Nota 2: Existe una posibilidad de que el propio servidor de Node pueda servir la build de React y contemplar tener back y front en el mismo punto.
