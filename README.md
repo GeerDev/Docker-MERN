@@ -29,7 +29,7 @@ En este entorno, hemos implementado un servidor Nginx como proxy inverso para qu
 
 <strong>Nota:</strong> Es muy importante recalcar que ahora mismo el sistema tiene muchos puertos abiertos, tanto los que gestiona el servidor web Nginx, como cada contenedor por su cuenta relacionado con el sistema anfitrión. Al ser un proyecto para practicar con Docker dejaremos esto así pero una configuración buena sería cerrar el mapeo de los contenedor de React y Node ya que Nginx ya se encarga de estas redirecciones y dejar solo la conexión del sistema anfitrión con la base de datos por si necesitas hacer alguna consulta por consola con MongoDB.
 
-![foto](./imagenes_readme/nginx.png) 
+![Foto Nginx](./imagenes_readme/nginx.png) 
 ## :hammer_and_wrench: Ambientes de producción y desarrollo :hammer_and_wrench:
 Se han generado dos ambientes para nuestro sistema, uno simulando un despliegue de la aplicación en producción y otro en modo desarrollo aplicando los cambios que se realicen al momento para que el/la desarrollador/a pueda ir comprobando el comportamiento de la aplicación. 
 
@@ -43,7 +43,7 @@ Comando para levantar el sistema en modo desarrollo, en segundo plano:
 docker compose -f docker-compose.dev.yml up -d
 ```
 
-![foto](./imagenes_readme/sistemalevantado.png)
+![Foto Sistema Levantado](./imagenes_readme/sistemalevantado.png)
 
 
 Comando para tumbar el sistema, los volúmenes e imágenes se mantienen:
@@ -56,7 +56,7 @@ Comando para tumbar el sistema y llevarte todo por delante, borras contenedores,
 docker compose down --rmi all -v
 ```
 
-![foto](./imagenes_readme/sistematumbado.png) 
+![Foto Sistema Tumbado](./imagenes_readme/sistematumbado.png) 
 
 <strong>Nota:</strong> El sistema anfitrión es un Windows y hemos utilizado la correspondiente virtualización para este sistema operativo usando Docker Desktop como herramienta de trabajo.
 
